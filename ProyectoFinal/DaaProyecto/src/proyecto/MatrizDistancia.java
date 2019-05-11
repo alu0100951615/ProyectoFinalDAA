@@ -92,25 +92,34 @@ public class MatrizDistancia {
 
 		float bestDistance = 0;
 
+		Solucion posiblesPuntos = new Solucion();
+
+		for (int distancia = 0; distancia < numPuntos; distancia++) {
+			posiblesPuntos.add(distancia);
+		}
+
 		for (int punto = 0; punto < currentVecino.size(); punto++) {
-			
-			for (int distancia = 0; distancia <= numPuntos - 1; distancia++) {
+
+			for (Integer p : posiblesPuntos) {
 
 				int auxPunto = currentVecino.get(punto);
-				int next = (currentVecino.get(punto) + distancia) % numPuntos;
-				
-				currentVecino.set(punto, next);
-				
-				System.out.println(currentVecino);
 
-				float currentDistance = elementsDistance(currentVecino);
-				if (currentDistance > bestDistance) {
-					bestDistance = currentDistance;
-					bestVecino = currentVecino.clone();
+				if (!currentVecino.contains(p)) {
+
+					currentVecino.set(punto, p);
+
+					System.out.println(currentVecino);
+
+					float currentDistance = elementsDistance(currentVecino);
+					if (currentDistance > bestDistance) {
+						bestDistance = currentDistance;
+						bestVecino = currentVecino.clone();
+					}
+
+					currentVecino.set(punto, auxPunto);
 				}
-
-				currentVecino.set(punto, auxPunto);
 			}
+
 		}
 
 		return bestVecino;
@@ -158,7 +167,8 @@ public class MatrizDistancia {
 		System.out.println(md.getSoluciones());
 
 		Solucion bestVecino = md.getBestVecino(md.getSoluciones().get(0));
-		System.out.println("Actual\n" + md.getSoluciones().get(0) + "\nDistancia = " + md.elementsDistance(md.getSoluciones().get(0)));
+		System.out.println("Actual\n" + md.getSoluciones().get(0) + "\nDistancia = "
+				+ md.elementsDistance(md.getSoluciones().get(0)));
 		System.out.println("Mejor vecino\n" + bestVecino + "\nDistancia = " + md.elementsDistance(bestVecino));
 
 	}
