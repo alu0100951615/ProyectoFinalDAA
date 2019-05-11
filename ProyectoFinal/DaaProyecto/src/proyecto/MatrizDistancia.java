@@ -73,18 +73,29 @@ public class MatrizDistancia {
 		return solucion;
 	}
 
+//	public Float elementsDistance(Solucion puntos) {
+//
+//		float distance = 0;
+//		for (Integer p1 : puntos)
+//			for (Integer p2 : puntos) {
+//
+//				if (p1 != p2)
+//					distance += getDist(p1, p2);
+//			}
+//
+//		return distance;
+//	}
 	public Float elementsDistance(Solucion puntos) {
 
-		float distance = 0;
-		for (Integer p1 : puntos)
-			for (Integer p2 : puntos) {
+        float distance = 0;
+        for (int i = 0; i < puntos.size() - 1; i++)
+            for (int j = i + 1; j < puntos.size() - 1; j++) {
+                // System.out.println(i + " " + j);
+                distance += getDist(puntos.get(i), puntos.get(j));
+            }
 
-				if (p1 != p2)
-					distance += getDist(p1, p2);
-			}
-
-		return distance;
-	}
+        return distance;
+    }
 
 	public Solucion getBestVecinoTabu(Solucion elementos, List<TabuMove> moves) {
 		Solucion bestVecino = new Solucion();
@@ -95,9 +106,10 @@ public class MatrizDistancia {
 		Solucion posiblesPuntos = new Solucion();
 		TabuMove finalMove = new TabuMove(-1, -1);
 
-		for (int distancia = 0; distancia < numPuntos; distancia++) {
-			posiblesPuntos.add(distancia);
-		}
+	    for (int distancia = 0; distancia < numPuntos; distancia++) {
+            if (!elementos.contains(distancia))
+                posiblesPuntos.add(distancia);
+        }
 
 		for (int punto = 0; punto < currentVecino.size(); punto++) {
 
@@ -140,9 +152,10 @@ public class MatrizDistancia {
 
 		Solucion posiblesPuntos = new Solucion();
 
-		for (int distancia = 0; distancia < numPuntos; distancia++) {
-			posiblesPuntos.add(distancia);
-		}
+	    for (int distancia = 0; distancia < numPuntos; distancia++) {
+            if (!elementos.contains(distancia))
+                posiblesPuntos.add(distancia);
+        }
 
 		for (int punto = 0; punto < currentVecino.size(); punto++) {
 
@@ -168,6 +181,48 @@ public class MatrizDistancia {
 		return bestVecino;
 
 	}
+	
+	public Solucion getBestVecino(Solucion elementos, int k) {
+        Solucion bestVecino = new Solucion();
+        Solucion currentVecino = new Solucion(elementos);
+
+        float bestDistance = 0;
+
+        Solucion posiblesPuntos = new Solucion();
+
+        for (int distancia = 0; distancia < numPuntos; distancia++) {
+            if (!elementos.contains(distancia))
+                posiblesPuntos.add(distancia);
+        }
+
+        for (int punto = 0; punto < currentVecino.size(); punto++) {
+
+            for (Integer posible : posiblesPuntos) {
+
+            	if (Math.abs(posible - punto) <= k) {
+                    int auxPunto = currentVecino.get(punto);
+
+                    currentVecino.set(punto, posible);
+
+                    // System.out.println(currentVecino);
+
+              //      System.out.println(currentVecino);
+
+                    float currentDistance = elementsDistance(currentVecino);
+                    if (currentDistance > bestDistance) {
+                        bestDistance = currentDistance;
+                        bestVecino = currentVecino.clone();
+                    }
+
+                    currentVecino.set(punto, auxPunto);
+                }
+            }
+
+        }
+
+        return bestVecino;
+
+    }
 
 	public List<List<Float>> getDistancias() {
 		return distancias;
