@@ -103,7 +103,7 @@ public class MatrizDistancia {
 
 			for (Integer posible : posiblesPuntos) {
 
-
+				
 				TabuMove move = new TabuMove(punto, posible);
 				if(!moves.contains(move)) {
 					//System.out.println(move);

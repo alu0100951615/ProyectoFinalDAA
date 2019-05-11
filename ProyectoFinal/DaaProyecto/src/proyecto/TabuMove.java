@@ -16,14 +16,16 @@ public class TabuMove {
 	}
 	
 	
-	
+	public String toString() {
+		return "[" + p1 + " , " + p2 + "]";
+	}
 	
 
 
 	@Override
 	public boolean equals(Object obj) {
 		
-		return (p1!=((TabuMove) obj).getP1() && p2!=((TabuMove) obj).getP2()) || (p2!=((TabuMove) obj).getP1() && p1!=((TabuMove) obj).getP2());
+		return (p1==((TabuMove) obj).getP1() && p2==((TabuMove) obj).getP2()) || (p2==((TabuMove) obj).getP1() && p1==((TabuMove) obj).getP2());
 	}
 
 

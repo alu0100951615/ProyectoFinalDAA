@@ -18,10 +18,12 @@ public class Tabu {
 		ArrayList<TabuMove> tabuMoves = new ArrayList<TabuMove>();
 		
 		for(int i = 0; i < Math.sqrt(distancias.getNumPuntos()); i++) {
+			
 			Solucion solucionActual = distancias.getBestVecinoTabu(solucion, tabuMoves);
 			if(distancias.elementsDistance(solucionActual) > distancias.elementsDistance(solucion)) {
 				solucion = solucionActual.clone();
 			}
+			
 		}
 		
 		return solucion;
