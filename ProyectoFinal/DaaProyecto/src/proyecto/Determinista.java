@@ -44,8 +44,9 @@ public class Determinista {
 	public static void main(String[] args) {
 		
 		
-		MatrizDistancia md = new MatrizDistancia("Instancias/GKD-a_1_n10_m2.txt");
+		MatrizDistancia md = new MatrizDistancia("Instancias/GKD-a_51_n30_m6.txt");
 		Determinista det = new Determinista(10, md);
+		System.out.println(md.elementsDistance(det.compute()));
 		System.out.println(det.compute());
 		
 		

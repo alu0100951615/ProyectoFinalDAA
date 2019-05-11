@@ -86,6 +86,52 @@ public class MatrizDistancia {
 		return distance;
 	}
 
+	public Solucion getBestVecinoTabu(Solucion elementos, List<TabuMove> moves) {
+		Solucion bestVecino = new Solucion();
+		Solucion currentVecino = new Solucion(elementos);
+
+		float bestDistance = 0;
+
+		Solucion posiblesPuntos = new Solucion();
+		TabuMove finalMove = new TabuMove(-1, -1);
+
+		for (int distancia = 0; distancia < numPuntos; distancia++) {
+			posiblesPuntos.add(distancia);
+		}
+
+		for (int punto = 0; punto < currentVecino.size(); punto++) {
+
+			for (Integer posible : posiblesPuntos) {
+
+
+				TabuMove move = new TabuMove(punto, posible);
+				if(!moves.contains(move)) {
+					//System.out.println(move);
+					int auxPunto = currentVecino.get(punto);
+
+					currentVecino.set(punto, posible);
+					
+				
+
+					float currentDistance = elementsDistance(currentVecino);
+					if (currentDistance > bestDistance) {
+						bestDistance = currentDistance;
+						bestVecino = currentVecino.clone();
+						finalMove = move.clone();
+					}
+
+					currentVecino.set(punto, auxPunto);
+				}
+
+			}
+
+		}
+
+		moves.add(finalMove);
+		return bestVecino;
+
+	}
+
 	public Solucion getBestVecino(Solucion elementos) {
 		Solucion bestVecino = new Solucion();
 		Solucion currentVecino = new Solucion(elementos);
@@ -100,24 +146,21 @@ public class MatrizDistancia {
 
 		for (int punto = 0; punto < currentVecino.size(); punto++) {
 
-			for (Integer p : posiblesPuntos) {
+			for (Integer posible : posiblesPuntos) {
 
 				int auxPunto = currentVecino.get(punto);
 
-				if (!currentVecino.contains(p)) {
+				currentVecino.set(punto, posible);
 
-					currentVecino.set(punto, p);
+				// System.out.println(currentVecino);
 
-			//		System.out.println(currentVecino);
-
-					float currentDistance = elementsDistance(currentVecino);
-					if (currentDistance > bestDistance) {
-						bestDistance = currentDistance;
-						bestVecino = currentVecino.clone();
-					}
-
-					currentVecino.set(punto, auxPunto);
+				float currentDistance = elementsDistance(currentVecino);
+				if (currentDistance > bestDistance) {
+					bestDistance = currentDistance;
+					bestVecino = currentVecino.clone();
 				}
+
+				currentVecino.set(punto, auxPunto);
 			}
 
 		}
