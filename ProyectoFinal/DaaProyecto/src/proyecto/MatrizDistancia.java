@@ -108,7 +108,7 @@ public class MatrizDistancia {
 
 					currentVecino.set(punto, p);
 
-					System.out.println(currentVecino);
+			//		System.out.println(currentVecino);
 
 					float currentDistance = elementsDistance(currentVecino);
 					if (currentDistance > bestDistance) {
