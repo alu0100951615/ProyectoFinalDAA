@@ -33,10 +33,10 @@ public class MultiArranque {
 		
 	}
 	
-	public static void main(String[] args) {
+	public static void main(String[] args) { 
 		
-		MatrizDistancia md = new MatrizDistancia("Instancias/GKD-a_51_n30_m6.txt");
-		MultiArranque ma = new MultiArranque(2000,100, md,10);
+		MatrizDistancia md = new MatrizDistancia(args[0]);
+		MultiArranque ma = new MultiArranque(120000,100, md,100);
 		System.out.println(md.elementsDistance(ma.compute()));
 		
 	}

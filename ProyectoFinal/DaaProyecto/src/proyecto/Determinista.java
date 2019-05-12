@@ -10,7 +10,7 @@ public class Determinista {
 	public Determinista(int num, MatrizDistancia distancias){
 		this.distancias = distancias;
 		for(int i = 0 ; i < num ; i++) {
-			
+			 
 			 soluciones.add(distancias.generateRandomSolution());
 			
 		}
@@ -44,10 +44,9 @@ public class Determinista {
 	public static void main(String[] args) {
 		
 		
-		MatrizDistancia md = new MatrizDistancia("Instancias/GKD-a_51_n30_m6.txt");
+		MatrizDistancia md = new MatrizDistancia(args[0]);
 		Determinista det = new Determinista(10, md);
 		System.out.println(md.elementsDistance(det.compute()));
-		System.out.println(det.compute());
 		
 		
 	}

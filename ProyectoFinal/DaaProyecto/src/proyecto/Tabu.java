@@ -32,9 +32,9 @@ public class Tabu {
 	
 	public static void main(String[] args) {
 		
-		MatrizDistancia md = new MatrizDistancia("Instancias/GKD-a_51_n30_m6.txt");
+		MatrizDistancia md = new MatrizDistancia("Instancias/GKD-b_50_n150_m45.txt");
 		Tabu ma = new Tabu(md);
-		for(int i = 0; i < 100; i++)
+		//for(int i = 0; i < 100; i++)
 		System.out.println(md.elementsDistance(ma.compute()));
 		
 	}

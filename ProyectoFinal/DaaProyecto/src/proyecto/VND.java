@@ -10,7 +10,11 @@ public class VND {
 	}
 	
 	public Solucion compute() {
-		Solucion sol = distancias.generateRandomSolution();
+		return compute(distancias.generateRandomSolution());
+	}
+	
+	
+	public Solucion compute(Solucion sol) {
 		boolean condicionParada = false;
 		int k = 1;
 		while(!condicionParada) {
@@ -36,14 +40,14 @@ public class VND {
 	
 	public static void main(String[] args) {
 		
-		MatrizDistancia md = new MatrizDistancia("Instancias/GKD-a_51_n30_m6.txt");
+		MatrizDistancia md = new MatrizDistancia("Instancias/GKD-b_50_n150_m45.txt");
 		VND vnd =  new VND(md);
 		System.out.println(md.elementsDistance(vnd.compute()));
 		
 	}
 	
 	
-	
+	//Lo mismo que el vns pero en vez del mejor vecino uno random
 	
 	
 }

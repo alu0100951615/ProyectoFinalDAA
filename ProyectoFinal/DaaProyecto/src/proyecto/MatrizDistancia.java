@@ -22,7 +22,7 @@ public class MatrizDistancia {
 			numPuntos = Integer.parseInt(dummy[0]);
 			numSubConjuntos = Integer.parseInt(dummy[1]);
 
-			if (numSubConjuntos > numPuntos) {
+			if (numSubConjuntos > numPuntos) { 
 				System.out.print("Error: el subconjunto no puede ser mayor que el numero de puntos");
 				System.exit(-1);
 			}
@@ -182,6 +182,42 @@ public class MatrizDistancia {
 
 	}
 	
+	public Solucion getRandomVecino(Solucion elementos, int k) {
+		
+		List<Solucion> kvecinos = new ArrayList<Solucion>();
+        Solucion currentVecino = new Solucion(elementos);
+
+        float bestDistance = 0;
+
+        Solucion posiblesPuntos = new Solucion();
+
+        for (int distancia = 0; distancia < numPuntos; distancia++) {
+            if (!elementos.contains(distancia))
+                posiblesPuntos.add(distancia);
+        }
+
+        for (int punto = 0; punto < currentVecino.size(); punto++) {
+
+            for (Integer posible : posiblesPuntos) {
+
+            	if (Math.abs(posible - punto) <= k) {
+                    int auxPunto = currentVecino.get(punto);
+
+                    currentVecino.set(punto, posible);
+                    kvecinos.add(currentVecino.clone());
+                    currentVecino.set(punto, auxPunto);
+                }
+            }
+
+        }
+        
+        Random random = new Random();
+		random.setSeed(System.currentTimeMillis());
+        
+        return kvecinos.get(Math.abs(random.nextInt() % kvecinos.size()));
+
+	}
+	
 	public Solucion getBestVecino(Solucion elementos, int k) {
         Solucion bestVecino = new Solucion();
         Solucion currentVecino = new Solucion(elementos);
@@ -204,9 +240,7 @@ public class MatrizDistancia {
 
                     currentVecino.set(punto, posible);
 
-                    // System.out.println(currentVecino);
-
-              //      System.out.println(currentVecino);
+                    
 
                     float currentDistance = elementsDistance(currentVecino);
                     if (currentDistance > bestDistance) {

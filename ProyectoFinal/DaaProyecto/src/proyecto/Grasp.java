@@ -29,8 +29,8 @@ public class Grasp {
 		
 	}
 	public static void main(String[] args) {
-		MatrizDistancia md = new MatrizDistancia("Instancias/GKD-a_51_n30_m6.txt");
-		Grasp grasp = new Grasp(5000, md,10);
+		MatrizDistancia md = new MatrizDistancia(args[0]);
+		Grasp grasp = new Grasp(1500, md,100);
 		System.out.println(md.elementsDistance(grasp.compute()));
 		
 	}
