@@ -1,5 +1,7 @@
 package proyecto;
 
+import java.io.File;
+
 public class GVNS {
 	
 
@@ -28,6 +30,10 @@ public class GVNS {
 					k = 1;
 					sol = dummy; 
 				}
+				
+				System.out.println(" Num Puntos " + distancias.getNumPuntos());
+				System.out.println(" k " + k);
+				System.out.println(" Solucion " + distancias.elementsDistance(sol));
 
 			}
 
@@ -36,10 +42,24 @@ public class GVNS {
 
 
 
-		public static void main(String[] args) {
+		public static void main(String[] args) {			
+			long TInicio,TFin,tiempo;
+			int escenarios = 1;
+			float sol;
+			File fichero = new File("../Soluciones/GVNS_2000_200.txt");
+			fichero.delete();		
 			MatrizDistancia md = new MatrizDistancia(args[0]);
-			GVNS gvns =  new GVNS(md);
-			System.out.println(md.elementsDistance(gvns.compute()));
+			WriteFich a = new WriteFich("../Soluciones/GVNS_2000_200.txt");
+			
+			for (int i = 0; i < escenarios; i++) {
+				TInicio = System.nanoTime();
+				GVNS gvns =  new GVNS(md);
+				sol = md.elementsDistance((gvns.compute()));
+				TFin = System.nanoTime();
+				tiempo = TFin - TInicio;
+				a.Write(sol, tiempo/1000000,i+1);
+				
+			}			
 
 		}
 

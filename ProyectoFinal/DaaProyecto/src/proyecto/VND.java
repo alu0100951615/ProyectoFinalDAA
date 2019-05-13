@@ -1,5 +1,7 @@
 package proyecto;
 
+import java.io.File;
+
 public class VND {
 
 
@@ -40,9 +42,25 @@ public class VND {
 	
 	public static void main(String[] args) {
 		
-		MatrizDistancia md = new MatrizDistancia("Instancias/GKD-b_50_n150_m45.txt");
-		VND vnd =  new VND(md);
-		System.out.println(md.elementsDistance(vnd.compute()));
+		
+		long TInicio,TFin,tiempo;
+		int escenarios = 10;
+		float sol;
+		File fichero = new File("../Soluciones/VND_2000_200.txt");
+		fichero.delete();		
+		MatrizDistancia md = new MatrizDistancia(args[0]);
+		WriteFich a = new WriteFich("../Soluciones/VND_2000_200.txt");
+		
+		for (int i = 0; i < escenarios; i++) {
+			TInicio = System.nanoTime();
+			VND vnd =  new VND(md);
+			sol = md.elementsDistance((vnd.compute()));
+			TFin = System.nanoTime();
+			tiempo = TFin - TInicio;
+			a.Write(sol, tiempo/1000000,i+1);
+			
+		}			
+		
 		
 	}
 	

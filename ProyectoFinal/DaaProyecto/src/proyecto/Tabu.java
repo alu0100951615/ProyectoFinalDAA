@@ -1,5 +1,6 @@
 package proyecto;
 
+import java.io.File;
 import java.util.ArrayList;
 
 public class Tabu {
@@ -31,11 +32,28 @@ public class Tabu {
 	}
 	
 	public static void main(String[] args) {
+				
+		long TInicio,TFin,tiempo;
+		int escenarios = 50;
+		float sol;
+		File fichero = new File("../Soluciones/Tabu_2000_200.txt");
+		fichero.delete();
 		
-		MatrizDistancia md = new MatrizDistancia("Instancias/GKD-b_50_n150_m45.txt");
-		Tabu ma = new Tabu(md);
-		//for(int i = 0; i < 100; i++)
-		System.out.println(md.elementsDistance(ma.compute()));
+		MatrizDistancia md = new MatrizDistancia(args[0]);
+		
+		
+		WriteFich a = new WriteFich("../Soluciones/Tabu_2000_200.txt");
+		
+		for (int i = 0; i < escenarios; i++) {
+			TInicio = System.nanoTime();
+			Tabu ma = new Tabu(md);
+			sol = md.elementsDistance((ma.compute()));
+			TFin = System.nanoTime();
+			tiempo = TFin - TInicio;
+			a.Write(sol, tiempo/1000000,i+1);
+			
+		}			
+		
 		
 	}
 	

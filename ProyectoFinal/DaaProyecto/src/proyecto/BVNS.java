@@ -1,5 +1,7 @@
 package proyecto;
 
+import java.io.File;
+
 public class BVNS {
 
 	private MatrizDistancia distancias;
@@ -33,9 +35,25 @@ public class BVNS {
 
 
 	public static void main(String[] args) {
+		
+		long TInicio,TFin,tiempo;
+		int escenarios = 10;
+		float sol;
+		File fichero = new File("../Soluciones/BVNS_2000_200.txt");
+		fichero.delete();		
 		MatrizDistancia md = new MatrizDistancia(args[0]);
-		BVNS bvns =  new BVNS(md);
-		System.out.println(md.elementsDistance(bvns.compute()));
+		WriteFich a = new WriteFich("../Soluciones/BVNS_2000_200.txt");
+		
+		for (int i = 0; i < escenarios; i++) {
+			TInicio = System.nanoTime();
+			BVNS bvns =  new BVNS(md);
+			sol = md.elementsDistance((bvns.compute()));
+			TFin = System.nanoTime();
+			tiempo = TFin - TInicio;
+			a.Write(sol, tiempo/1000000,i+1);
+			
+		}			
+		
 
 	}
 
