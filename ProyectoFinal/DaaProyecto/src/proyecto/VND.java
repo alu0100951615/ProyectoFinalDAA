@@ -6,9 +6,11 @@ public class VND {
 
 
 	private MatrizDistancia distancias;
+	private int ValorKmax;
 
-	public VND(MatrizDistancia distancias) {
+	public VND(MatrizDistancia distancias,int ValorKmax) {
 		this.distancias = distancias;
+		this.ValorKmax = ValorKmax;
 	}
 	
 	public Solucion compute() {
@@ -20,7 +22,7 @@ public class VND {
 		boolean condicionParada = false;
 		int k = 1;
 		while(!condicionParada) {
-			if( k >= distancias.getNumPuntos()) {
+			if( k >= ValorKmax) {
 				condicionParada = true;
 			}
 			Solucion dummy= distancias.getBestVecino(sol, k);
@@ -30,6 +32,10 @@ public class VND {
 				k = 1;
 				sol = dummy;
 			}
+			
+			System.out.println(" Num Puntos " + distancias.getNumPuntos());
+			System.out.println(" k " + k);
+			System.out.println(" Solucion " + distancias.elementsDistance(sol));
 				
 			
 		}
@@ -44,6 +50,7 @@ public class VND {
 		
 		
 		long TInicio,TFin,tiempo;
+		int kMAX = 100;
 		int escenarios = 10;
 		float sol;
 		File fichero = new File("../Soluciones/VND_2000_200.txt");
@@ -53,7 +60,7 @@ public class VND {
 		
 		for (int i = 0; i < escenarios; i++) {
 			TInicio = System.nanoTime();
-			VND vnd =  new VND(md);
+			VND vnd =  new VND(md,kMAX);
 			sol = md.elementsDistance((vnd.compute()));
 			TFin = System.nanoTime();
 			tiempo = TFin - TInicio;

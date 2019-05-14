@@ -6,18 +6,20 @@ public class GVNS {
 	
 
 		private MatrizDistancia distancias;
+		private int ValorKmax;
 
-		public GVNS(MatrizDistancia distancias) {
+		public GVNS(MatrizDistancia distancias, int ValorKmax) {
 			this.distancias = distancias;
+			this.ValorKmax = ValorKmax;
 		}
 
 		public Solucion compute() {
 			Solucion sol = distancias.generateRandomSolution();
 			boolean condicionParada = false;
 			int k = 1;
-			VND vndUmmy = new VND(distancias);
+			VND vndUmmy = new VND(distancias,ValorKmax);
 			while (!condicionParada) {
-				if (k >= distancias.getNumPuntos()) {
+				if (k >= ValorKmax) {
 					condicionParada = true;
 				}
 				
@@ -34,6 +36,9 @@ public class GVNS {
 				System.out.println(" Num Puntos " + distancias.getNumPuntos());
 				System.out.println(" k " + k);
 				System.out.println(" Solucion " + distancias.elementsDistance(sol));
+				System.out.println("************************************************");
+				System.out.println("************************************************");
+				System.out.println("************************************************");
 
 			}
 
@@ -45,6 +50,7 @@ public class GVNS {
 		public static void main(String[] args) {			
 			long TInicio,TFin,tiempo;
 			int escenarios = 1;
+			int Kmax = 50;
 			float sol;
 			File fichero = new File("../Soluciones/GVNS_2000_200.txt");
 			fichero.delete();		
@@ -53,7 +59,7 @@ public class GVNS {
 			
 			for (int i = 0; i < escenarios; i++) {
 				TInicio = System.nanoTime();
-				GVNS gvns =  new GVNS(md);
+				GVNS gvns =  new GVNS(md,Kmax);
 				sol = md.elementsDistance((gvns.compute()));
 				TFin = System.nanoTime();
 				tiempo = TFin - TInicio;
