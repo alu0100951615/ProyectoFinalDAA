@@ -38,19 +38,19 @@ public class MultiArranque {
 	public static void main(String[] args) { 		
 		
 		long TInicio,TFin,tiempo;
-		int escenarios = 50;
+		int escenarios = 25;
 		float sol;
-		File fichero = new File("../Soluciones/Multiarranque_150_45.txt");
+		File fichero = new File("../Soluciones/Multiarranque_200_40.txt");
 		fichero.delete();
 		
 		MatrizDistancia md = new MatrizDistancia(args[0]);
 		
 		
-		WriteFich a = new WriteFich("../Soluciones/Multiarranque_150_45.txt");
+		WriteFich a = new WriteFich("../Soluciones/Multiarranque_200_40.txt");
 		
 		for (int i = 0; i < escenarios; i++) {
 			TInicio = System.nanoTime();
-			MultiArranque ma = new MultiArranque(115000,100, md,100);
+			MultiArranque ma = new MultiArranque(3000,50, md,50);
 			sol = md.elementsDistance((ma.compute()));
 			TFin = System.nanoTime();
 			tiempo = TFin - TInicio;
