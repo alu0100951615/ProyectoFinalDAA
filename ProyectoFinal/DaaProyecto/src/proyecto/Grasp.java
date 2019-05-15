@@ -33,17 +33,17 @@ public class Grasp {
 		long TInicio,TFin,tiempo;
 		int escenarios = 200;
 		float sol;
-		File fichero = new File("../Soluciones/GRASP_200_40.txt");
+		File fichero = new File("../Soluciones/GRASP_2000_200.txt");
 		fichero.delete();
 		
 		MatrizDistancia md = new MatrizDistancia(args[0]);
 		
 		
-		WriteFich a = new WriteFich("../Soluciones/GRASP_200_40.txt");
+		WriteFich a = new WriteFich("../Soluciones/GRASP_2000_200.txt");
 		
 		for (int i = 0; i < escenarios; i++) {
 			TInicio = System.nanoTime();
-			Grasp grasp = new Grasp(3000, md,50);
+			Grasp grasp = new Grasp(9500000, md,50);
 			sol = md.elementsDistance((grasp.compute()));
 			TFin = System.nanoTime();
 			tiempo = TFin - TInicio;

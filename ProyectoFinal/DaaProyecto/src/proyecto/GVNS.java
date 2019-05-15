@@ -49,13 +49,13 @@ public class GVNS {
 
 		public static void main(String[] args) {			
 			long TInicio,TFin,tiempo;
-			int escenarios = 50;
-			int Kmax = 100;
+			int escenarios = 100;
+			int Kmax = 75;
 			float sol;
-			File fichero = new File("../Soluciones/GVNS_200_40.txt");
+			File fichero = new File("../Soluciones/GVNS_2000_200.txt");
 			fichero.delete();		
 			MatrizDistancia md = new MatrizDistancia(args[0]);
-			WriteFich a = new WriteFich("../Soluciones/GVNS_200_40.txt");
+			WriteFich a = new WriteFich("../Soluciones/GVNS_2000_200.txt");
 			
 			for (int i = 0; i < escenarios; i++) {
 				TInicio = System.nanoTime();

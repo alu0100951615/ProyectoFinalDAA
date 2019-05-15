@@ -45,16 +45,16 @@ public class Determinista {
 	public static void main(String[] args) {
 		
 		long TInicio,TFin,tiempo;
-		int escenarios = 500;
+		int escenarios = 100;
 		float sol;
-		File fichero = new File("../Soluciones/Determinista_200_40.txt");
+		File fichero = new File("../Soluciones/Determinista_2000_200.txt");
 		fichero.delete();
 		MatrizDistancia md = new MatrizDistancia(args[0]);
-		WriteFich a = new WriteFich("../Soluciones/Determinista_200_40.txt");
+		WriteFich a = new WriteFich("../Soluciones/Determinista_2000_200.txt");
 		
 		for (int i = 0; i < escenarios; i++) {
 			TInicio = System.nanoTime();
-			Determinista det = new Determinista(10, md);
+			Determinista det = new Determinista(100, md);
 			sol = md.elementsDistance(det.compute());
 			TFin = System.nanoTime();
 			tiempo = TFin - TInicio;
