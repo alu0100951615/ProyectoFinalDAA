@@ -36,7 +36,7 @@ public class BVNS {
 			System.out.println(" Num Puntos " + distancias.getNumPuntos());
 			System.out.println(" k " + k);
 			System.out.println(" Solucion " + distancias.elementsDistance(sol));
-			System.out.println("Tiempo " + tiempo/1000 + "MS" );
+			System.out.println("Tiempo " + tiempo/1000000 + "MS" );
 
 		}
 
@@ -48,13 +48,13 @@ public class BVNS {
 	public static void main(String[] args) {
 		
 		long TInicio,TFin,tiempo;
-		int escenarios = 50;
+		int escenarios = 3;
 		float sol;
-		int kMAX = 100;
-		File fichero = new File("../Soluciones/BVNS_200_40.txt");
+		int kMAX = 75;
+		File fichero = new File("../Soluciones/BVNS_2000_200.txt");
 		fichero.delete();		
 		MatrizDistancia md = new MatrizDistancia(args[0]);
-		WriteFich a = new WriteFich("../Soluciones/BVNS_200_40.txt");
+		WriteFich a = new WriteFich("../Soluciones/BVNS_2000_200.txt");
 		
 		for (int i = 0; i < escenarios; i++) {
 			TInicio = System.nanoTime();
