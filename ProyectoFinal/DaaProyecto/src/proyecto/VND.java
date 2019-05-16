@@ -53,10 +53,10 @@ public class VND {
 		int kMAX = 75;
 		int escenarios = 250;
 		float sol;
-		File fichero = new File("../Soluciones/VND_300_120.txt");
+		File fichero = new File("../Soluciones/VND_400_160.txt");
 		fichero.delete();		
 		MatrizDistancia md = new MatrizDistancia(args[0]);
-		WriteFich a = new WriteFich("../Soluciones/VND_300_120.txt");
+		WriteFich a = new WriteFich("../Soluciones/VND_400_160.txt");
 		
 		for (int i = 0; i < escenarios; i++) {
 			TInicio = System.nanoTime();

@@ -50,11 +50,11 @@ public class BVNS {
 		long TInicio,TFin,tiempo;
 		int escenarios = 250;
 		float sol;
-		int kMAX = 75;
-		File fichero = new File("../Soluciones/BVNS_500_50.txt");
+		int kMAX = 50;
+		File fichero = new File("../Soluciones/BVNS_2000_200.txt");
 		fichero.delete();		
 		MatrizDistancia md = new MatrizDistancia(args[0]);
-		WriteFich a = new WriteFich("../Soluciones/BVNS_500_50.txt");
+		WriteFich a = new WriteFich("../Soluciones/BVNS_2000_200.txt");
 		
 		for (int i = 0; i < escenarios; i++) {
 			TInicio = System.nanoTime();
