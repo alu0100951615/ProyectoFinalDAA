@@ -52,10 +52,10 @@ public class GVNS {
 			int escenarios = 100;
 			int Kmax = 75;
 			float sol;
-			File fichero = new File("../Soluciones/GVNS_400_160.txt");
+			File fichero = new File("../Soluciones/GVNS_200_80.txt");
 			fichero.delete();		
 			MatrizDistancia md = new MatrizDistancia(args[0]);
-			WriteFich a = new WriteFich("../Soluciones/GVNS_400_160.txt");
+			WriteFich a = new WriteFich("../Soluciones/GVNS_200_80.txt");
 			
 			for (int i = 0; i < escenarios; i++) {
 				TInicio = System.nanoTime();

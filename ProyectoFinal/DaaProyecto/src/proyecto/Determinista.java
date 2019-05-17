@@ -47,10 +47,10 @@ public class Determinista {
 		long TInicio,TFin,tiempo;
 		int escenarios = 100;
 		float sol;
-		File fichero = new File("../Soluciones/Determinista_2000_200.txt");
+		File fichero = new File("../Soluciones/Determinista_200_80.txt");
 		fichero.delete();
 		MatrizDistancia md = new MatrizDistancia(args[0]);
-		WriteFich a = new WriteFich("../Soluciones/Determinista_2000_200.txt");
+		WriteFich a = new WriteFich("../Soluciones/Determinista_200_80.txt");
 		
 		for (int i = 0; i < escenarios; i++) {
 			TInicio = System.nanoTime();

@@ -31,19 +31,19 @@ public class Grasp {
 	}
 	public static void main(String[] args) {			
 		long TInicio,TFin,tiempo;
-		int escenarios = 200;
+		int escenarios = 100;
 		float sol;
-		File fichero = new File("../Soluciones/GRASP_2000_200.txt");
+		File fichero = new File("../Soluciones/GRASP_200_80.txt");
 		fichero.delete();
 		
 		MatrizDistancia md = new MatrizDistancia(args[0]);
 		
 		
-		WriteFich a = new WriteFich("../Soluciones/GRASP_2000_200.txt");
+		WriteFich a = new WriteFich("../Soluciones/GRASP_200_80.txt");
 		
 		for (int i = 0; i < escenarios; i++) {
 			TInicio = System.nanoTime();
-			Grasp grasp = new Grasp(9500000, md,50);
+			Grasp grasp = new Grasp(14500, md,50);
 			sol = md.elementsDistance((grasp.compute()));
 			TFin = System.nanoTime();
 			tiempo = TFin - TInicio;
