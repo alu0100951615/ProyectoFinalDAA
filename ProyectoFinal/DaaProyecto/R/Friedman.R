@@ -11,25 +11,25 @@ myData2$ID<-seq.int(nrow(myData2))
 myMatrix<-data.matrix(myData)
 
 #In long format
-install.packages("reshape2")
+#install.packages("reshape2")
 library(reshape2)
 myDataLong<-melt(myData2, id.vars=c("ID"))
 
 
 #No Friedman test in base, so need a package
 #Using the stats package
-install.packages("stats")
+#install.packages("stats")
 library(stats)
 #friedman.test(myMatrix)
 friedman.test(myDataLong$value,myDataLong$variable,myDataLong$ID)
 
 #Using the agricolae package:
-install.packages("agricolae")
+#install.packages("agricolae")
 library(agricolae)
 friedman(myDataLong$ID,myDataLong$variable,myDataLong$value,console=TRUE)
 
 #Using the coin package
-install.packages("coin")
+#install.packages("coin")
 library(coin)
 myDataLong[,'ID']<-factor(myDataLong[,'ID'])
 friedman_test(value ~ variable | ID, myDataLong)
