@@ -1,4 +1,5 @@
 Proyecto Final de DAA
+
 Maximun diversity Problem
 
 En el args[0] debe introducirse el fichero con la instancia del problema.
